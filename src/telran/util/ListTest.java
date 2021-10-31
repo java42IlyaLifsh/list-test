@@ -21,7 +21,8 @@ String initialStrings[] = {"name1", "name2"};
 	}
 
 	private List<String> getInitialStrings() {
-		List<String> res = new ArrayList<>();
+		//List<String> res = new ArrayList<>();
+		List<String> res = new LinkedList<>();
 		for (int i = 0; i < initialStrings.length; i++) {
 			res.add(initialStrings[i]);
 		}
@@ -30,7 +31,8 @@ String initialStrings[] = {"name1", "name2"};
 
 	private List<Integer> getInitialNumbers() {
 		
-		List<Integer> res = new ArrayList<>(1);
+		//List<Integer> res = new ArrayList<>(1);
+		List<Integer> res = new LinkedList<>();
 		for (int i = 0; i < initialNumbers.length; i++) {
 			res.add(initialNumbers[i]);
 		}
@@ -103,7 +105,8 @@ String initialStrings[] = {"name1", "name2"};
 	void testContainsPersons() {
 		Person prs = new Person(123, "Moshe");
 		Person prs2 = new Person(124, "Vasya");
-		List<Person> persons = new ArrayList<>();
+//		List<Person> persons = new ArrayList<>();
+		List<Person> persons = new LinkedList<>();
 		persons.add(prs);
 		persons.add(prs2);
 		assertTrue(persons.contains(new Person(124, "Vasya")));
