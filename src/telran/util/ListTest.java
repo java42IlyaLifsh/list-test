@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
-import javax.management.modelmbean.ModelMBeanNotificationBroadcaster;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -179,7 +178,41 @@ String initialStrings[] = {"name1", "name2"};
 		assertArrayEquals(expectedEmpty, getArrayFromList(numbers));
 		
 		
+		
 	}
+	@Test
+	void removeAllTest() {
+		numbers.add(20);
+		List<Integer> otherNumbers = new ArrayList<>();
+		otherNumbers.add(20);
+		otherNumbers.add(40);
+		assertTrue(numbers.removeAll(otherNumbers));
+		Integer expected[] = {10};
+		assertArrayEquals(expected, getArrayFromList(numbers));
+		assertFalse(numbers.removeAll(otherNumbers));
+	}
+	@Test
+	void removeAllSame() {
+		assertTrue(numbers.removeAll(numbers));
+		assertArrayEquals(new Integer[0], getArrayFromList(numbers));
+	}
+	@Test
+	void retainAllTest() {
+		numbers.add(20);
+		List<Integer> otherNumbers = new ArrayList<>();
+		otherNumbers.add(20);
+		otherNumbers.add(40);
+		assertTrue(numbers.retainAll(otherNumbers));
+		Integer expected[] = {20,40,20};
+		assertArrayEquals(expected, getArrayFromList(numbers));
+		assertFalse(numbers.retainAll(otherNumbers));
+	}
+	@Test
+	void retainAllSame() {
+		assertFalse(numbers.retainAll(numbers));
+		assertArrayEquals(initialNumbers, getArrayFromList(numbers));
+	}
+	
 	@Test
 	void removeObjectTest() {
 		Integer expected0[] = {20, 40};
