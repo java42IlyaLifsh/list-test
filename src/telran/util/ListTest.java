@@ -2,7 +2,11 @@ package telran.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+<<<<<<< HEAD
 import java.util.Comparator;
+=======
+import java.util.Arrays;
+>>>>>>> refs/heads/master
 import java.util.function.Predicate;
 
 import javax.management.modelmbean.ModelMBeanNotificationBroadcaster;
@@ -179,6 +183,23 @@ String initialStrings[] = {"name1", "name2"};
 		assertArrayEquals(expectedEmpty, getArrayFromList(numbers));
 		
 		
+		
+	}
+	@Test
+	void removeAllTest() {
+		numbers.add(20);
+		List<Integer> otherNumbers = new ArrayList<>();
+		otherNumbers.add(20);
+		otherNumbers.add(40);
+		assertTrue(numbers.removeAll(otherNumbers));
+		Integer expected[] = {10};
+		assertArrayEquals(expected, getArrayFromList(numbers));
+		assertFalse(numbers.removeAll(otherNumbers));
+	}
+	@Test
+	void removeAllSame() {
+		assertTrue(numbers.removeAll(numbers));
+		assertArrayEquals(new Integer[0], getArrayFromList(numbers));
 	}
 	@Test
 	void removeObjectTest() {
