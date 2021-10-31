@@ -2,6 +2,7 @@ package telran.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javax.management.modelmbean.ModelMBeanNotificationBroadcaster;
@@ -178,6 +179,35 @@ String initialStrings[] = {"name1", "name2"};
 		assertArrayEquals(expectedEmpty, getArrayFromList(numbers));
 		
 		
+	}
+	@Test
+	void removeObjectTest() {
+		Integer expected0[] = {20, 40};
+		Integer expected1[] = {20};
+		assertNull(numbers.remove((Integer)25));
+		assertEquals(10, numbers.remove((Integer)10));
+		assertArrayEquals(expected0, getArrayFromList(numbers));
+		assertEquals(40, numbers.remove((Integer)40));
+		assertArrayEquals(expected1, getArrayFromList(numbers));
+	}
+	@Test
+	void sortNaturalTest() {
+		numbers.add(40);
+		numbers.add(10);
+		numbers.add(20);
+		Integer expected[] = {10, 10, 20, 20, 40, 40};
+		numbers.sort();
+		assertArrayEquals(expected, getArrayFromList(numbers));
+	}
+	@Test
+	void sortComparatorTest() {
+		Integer expectedReverse[] = {40, 20, 10};
+		Integer expectedProximity23[] = {20, 10, 40}; //sorted per proximity to 23
+		Comparator<Integer> compNatural = Comparator.naturalOrder();
+		numbers.sort(compNatural.reversed());
+		assertArrayEquals(expectedReverse, getArrayFromList(numbers));
+		numbers.sort(new ProximityNumberComparator(23));
+		assertArrayEquals(expectedProximity23, getArrayFromList(numbers));
 	}
 
 }
