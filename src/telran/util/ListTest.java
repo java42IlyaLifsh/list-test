@@ -2,14 +2,9 @@ package telran.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-<<<<<<< HEAD
 import java.util.Comparator;
-=======
-import java.util.Arrays;
->>>>>>> refs/heads/master
 import java.util.function.Predicate;
 
-import javax.management.modelmbean.ModelMBeanNotificationBroadcaster;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +21,8 @@ String initialStrings[] = {"name1", "name2"};
 	}
 
 	private List<String> getInitialStrings() {
-		List<String> res = new ArrayList<>();
+		//List<String> res = new ArrayList<>();
+		List<String> res = new LinkedList<>();
 		for (int i = 0; i < initialStrings.length; i++) {
 			res.add(initialStrings[i]);
 		}
@@ -35,7 +31,8 @@ String initialStrings[] = {"name1", "name2"};
 
 	private List<Integer> getInitialNumbers() {
 		
-		List<Integer> res = new ArrayList<>(1);
+		//List<Integer> res = new ArrayList<>(1);
+		List<Integer> res = new LinkedList<>();
 		for (int i = 0; i < initialNumbers.length; i++) {
 			res.add(initialNumbers[i]);
 		}
@@ -108,7 +105,8 @@ String initialStrings[] = {"name1", "name2"};
 	void testContainsPersons() {
 		Person prs = new Person(123, "Moshe");
 		Person prs2 = new Person(124, "Vasya");
-		List<Person> persons = new ArrayList<>();
+//		List<Person> persons = new ArrayList<>();
+		List<Person> persons = new LinkedList<>();
 		persons.add(prs);
 		persons.add(prs2);
 		assertTrue(persons.contains(new Person(124, "Vasya")));
@@ -201,6 +199,23 @@ String initialStrings[] = {"name1", "name2"};
 		assertTrue(numbers.removeAll(numbers));
 		assertArrayEquals(new Integer[0], getArrayFromList(numbers));
 	}
+	@Test
+	void retainAllTest() {
+		numbers.add(20);
+		List<Integer> otherNumbers = new ArrayList<>();
+		otherNumbers.add(20);
+		otherNumbers.add(40);
+		assertTrue(numbers.retainAll(otherNumbers));
+		Integer expected[] = {20,40,20};
+		assertArrayEquals(expected, getArrayFromList(numbers));
+		assertFalse(numbers.retainAll(otherNumbers));
+	}
+	@Test
+	void retainAllSame() {
+		assertFalse(numbers.retainAll(numbers));
+		assertArrayEquals(initialNumbers, getArrayFromList(numbers));
+	}
+	
 	@Test
 	void removeObjectTest() {
 		Integer expected0[] = {20, 40};
