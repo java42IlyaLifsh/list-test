@@ -3,6 +3,7 @@ package telran.util;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.function.Predicate;
 
 
@@ -32,8 +33,8 @@ String initialStrings[] = {"name1", "name2"};
 
 	private List<Integer> getInitialNumbers() {
 		
-		List<Integer> res = new ArrayList<>(1);
-		//List<Integer> res = new LinkedList<>();
+		//List<Integer> res = new ArrayList<>(1);
+		List<Integer> res = new LinkedList<>();
 		for (int num: initialNumbers) {
 			res.add(num);
 		}
@@ -271,7 +272,12 @@ String initialStrings[] = {"name1", "name2"};
 	}
 	@Test
 	void removeByIteratorTest() {
-		//TODO test for checking method remove of ArrayListIterator
+		Iterator<Integer> it = numbers.iterator();
+		while(it.hasNext()) {
+			it.next();
+			it.remove();
+		}
+		assertArrayEquals(new Integer[0], getArrayFromList(numbers));
 	}
 
 	private void fillListPerformance(List<Integer> list) {
