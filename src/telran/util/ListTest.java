@@ -23,8 +23,8 @@ String initialStrings[] = {"name1", "name2"};
 	}
 
 	private List<String> getInitialStrings() {
-		//List<String> res = new ArrayList<>();
-		List<String> res = new LinkedList<>();
+		List<String> res = new ArrayList<>();
+		//List<String> res = new LinkedList<>();
 		for (int i = 0; i < initialStrings.length; i++) {
 			res.add(initialStrings[i]);
 		}
@@ -130,16 +130,16 @@ String initialStrings[] = {"name1", "name2"};
 	}
 	@Test
 	void containsPredicateNumbersTest() {
-		Predicate<Integer> predicate100 = new GreaterNumberPredicate(100);
-		Predicate<Integer> predicate25 = new GreaterNumberPredicate(25);
+		Predicate<Integer> predicate100 = null; /* TODO rewrite code without any predicate class */
+		Predicate<Integer> predicate25 = null; /* TODO rewrite code without any predicate class */
 		assertFalse(numbers.contains(predicate100));
 		assertTrue(numbers.contains(predicate25));
 		
 	}
 	@Test
 	void containsPredicateStringsTest() {
-		Predicate<String> predicateName = new StartWithPredicate("name");
-		Predicate<String> predicateMain = new StartWithPredicate("main");
+		Predicate<String> predicateName = null; /* TODO rewrite code without any predicate class */
+		Predicate<String> predicateMain = null; /* TODO rewrite code without any predicate class */
 		assertFalse(strings.contains(predicateMain));
 		assertTrue(strings.contains(predicateName));
 		
@@ -174,25 +174,25 @@ String initialStrings[] = {"name1", "name2"};
 	}
 	@Test
 	void indexOfPredicate() {
-		assertEquals(2, numbers.indexOf(new GreaterNumberPredicate(25)));
-		assertEquals(0, numbers.indexOf(new GreaterNumberPredicate(5)));
-		assertEquals(-1, numbers.indexOf(new GreaterNumberPredicate(45)));
+		assertEquals(2, /* TODO rewrite code without any predicate class */1);
+		assertEquals(0, /* TODO rewrite code without any predicate class */1);
+		assertEquals(-1,/* TODO rewrite code without any predicate class */1);
 	}
 	@Test
 	void lastIndexOfPredicate() {
-		assertEquals(2, numbers.lastIndexOf(new GreaterNumberPredicate(25)));
-		assertEquals(2, numbers.lastIndexOf(new GreaterNumberPredicate(5)));
-		assertEquals(-1, numbers.lastIndexOf(new GreaterNumberPredicate(45)));
+		assertEquals(2, /* TODO rewrite code without any predicate class */1);
+		assertEquals(2, /* TODO rewrite code without any predicate class */1);
+		assertEquals(-1, /* TODO rewrite code without any predicate class */1);
 	}
 	@Test
 	void removeIfTest() {
 		Integer expected[] = {10, 20};
 		Integer expectedEmpty[] = {};
-		Predicate<Integer> greater25 = new GreaterNumberPredicate(25);
+		Predicate<Integer> greater25 = null; /* TODO rewrite code without any predicate class */
 		assertTrue(numbers.removeIf(greater25));
 		assertFalse(numbers.removeIf(greater25));
 		assertArrayEquals(expected, getArrayFromList(numbers));
-		assertTrue(numbers.removeIf(new GreaterNumberPredicate(0)));
+		assertTrue(/* TODO rewrite code without any predicate class */false);
 		assertArrayEquals(expectedEmpty, getArrayFromList(numbers));
 		
 		
@@ -257,7 +257,7 @@ String initialStrings[] = {"name1", "name2"};
 		Comparator<Integer> compNatural = Comparator.naturalOrder();
 		numbers.sort(compNatural.reversed());
 		assertArrayEquals(expectedReverse, getArrayFromList(numbers));
-		numbers.sort(new ProximityNumberComparator(23));
+		numbers.sort(/* TODO rewrite code without any comparator class */);
 		assertArrayEquals(expectedProximity23, getArrayFromList(numbers));
 	}
 	@Test
@@ -265,7 +265,7 @@ String initialStrings[] = {"name1", "name2"};
 		//List<Integer> list = new LinkedList<>();
 		List<Integer> list = new ArrayList<>();
 		fillListPerformance(list);
-		Predicate<Integer> divider4Predicate = new Divider4Predicate();
+		Predicate<Integer> divider4Predicate = null/* TODO rewrite code without any predicate class */;
 		list.removeIf(divider4Predicate);
 		assertEquals(-1, list.indexOf(divider4Predicate));
 		
