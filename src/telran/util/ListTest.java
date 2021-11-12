@@ -1,7 +1,7 @@
 package telran.util;
 
 //HW_12 IlyaL  new
-
+// V.R. Looks very good. I don't see any problem.
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Comparator;
