@@ -1,6 +1,6 @@
 package telran.util;
 
-//HW_12 IlyaL 
+//HW_12 IlyaL  new
 
 import static org.junit.jupiter.api.Assertions.*;
 
