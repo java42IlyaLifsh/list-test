@@ -24,6 +24,7 @@ String initialStrings[] = {"name1", "name2"};
 	}
 
 	private List<String> getInitialStrings() {
+		//FIXME getting class name for testing from a config file
 		List<String> res = new ArrayList<>();
 		//List<String> res = new LinkedList<>();
 		for (int i = 0; i < initialStrings.length; i++) {
@@ -33,8 +34,8 @@ String initialStrings[] = {"name1", "name2"};
 	}
 
 	private List<Integer> getInitialNumbers() {
-		
-		//List<Integer> res = new ArrayList<>(1);
+		//FIXME  getting class name for testing from a config file
+		//List<Integer> res = new ArrayList<>();
 		List<Integer> res = new LinkedList<>();
 		for (int num: initialNumbers) {
 			res.add(num);
