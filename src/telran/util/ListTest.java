@@ -1,9 +1,16 @@
 package telran.util;
+//IlyaL 
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
@@ -13,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 class ListTest {
 private static final int N_NUMBERS_PERFORMANCE = 1_000_0000;
+private static final String BASE_PACKAGE = "java.util.";
 private List<Integer> numbers;
 private List<String> strings;
 Integer initialNumbers[] = {10, 20, 40};
@@ -23,25 +31,43 @@ String initialStrings[] = {"name1", "name2"};
 		strings = getInitialStrings();
 	}
 
-	private List<String> getInitialStrings() {
-		//FIXME getting class name for testing from a config file
+	private List<String> getInitialStrings() throws Exception {
+		// getting class name for testing from a config file
+		/*
 		List<String> res = new ArrayList<>();
 		//List<String> res = new LinkedList<>();
+		
+		*/
+		String className = getClassName();
+		List<String> res  =  (List<String>) Class.forName(className).getConstructor().newInstance(); 
 		for (int i = 0; i < initialStrings.length; i++) {
 			res.add(initialStrings[i]);
 		}
 		return res;
 	}
 
-	private List<Integer> getInitialNumbers() {
-		//FIXME  getting class name for testing from a config file
+	private List<Integer> getInitialNumbers() throws Exception {
+		// getting class name for testing from a config file
+		/*
 		//List<Integer> res = new ArrayList<>();
 		List<Integer> res = new LinkedList<>();
-		for (int num: initialNumbers) {
+		
+		*/
+		String className = getClassName();
+		List<Integer> res  =  (List<Integer>) Class.forName(className).getConstructor().newInstance();
+		for (int num : initialNumbers) {
 			res.add(num);
 		}
 		return res;
 	}
+
+	private String getClassName() throws Exception {
+		//
+		File file = new File ("ConfigFile.txt");
+		BufferedReader bufr = new BufferedReader(new FileReader(file));
+		return BASE_PACKAGE + bufr.readLine();
+	}
+	/*
 	@Test
 	void sortedSearchExist() {
 		assertEquals(0, numbers.sortedSearch(10));
@@ -325,5 +351,5 @@ String initialStrings[] = {"name1", "name2"};
 			fail("There should be thrown IllegalStateException");
 		}
 	}
-
+*/
 }
